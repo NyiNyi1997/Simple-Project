@@ -37,10 +37,10 @@ Route::post('/employees/search','EmployeeController@search');//  employees searc
 Route::apiResource('/department_positions','DepartmentPositionController');
 
 //File Export
-Route::get('/EmployeeExport','EmployeeController@fileExport');
+Route::get('/employee-export','EmployeeController@fileExport');
 
 //File Import
-Route::post('/EmplopyeeImport/{id}','EmployeeController@fileImport');
+Route::post('/emplopyeeImport/{id}','EmployeeController@fileImport');
 
 
 

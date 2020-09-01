@@ -163,6 +163,12 @@ class DepartmentController extends Controller
 
     }
 
+      /**  
+    *@Description-> force delete data from department table
+    *@author-> nyi nyi aung
+    *@param->$id
+    *@date->26/08/2020
+    */
     public function forceDelete($id)
     {
         //

@@ -102,6 +102,7 @@ class EmployeeController extends Controller
         }
 
         if($request->department_id){
+
             $dep_id=$request->department_id;
         }
         else{
@@ -118,6 +119,7 @@ class EmployeeController extends Controller
 
         //$email=$request['email'];
         Mail::raw('Your Registration is finish.',function($message){
+
             $message->subject('Registration')->from('lonlon.blah@gmail.com')->to('nynyia128@gmail.com');
         });
         return response()->json([
@@ -356,16 +358,16 @@ class EmployeeController extends Controller
     */
     public function fileExport(Request $request){
 
-        Artisan::call('cache:clear'); //cache clear 
-        Artisan::call('config:cache'); //cache clear
+        // Artisan::call('cache:clear'); //cache clear 
+        // Artisan::call('config:cache'); //cache clear
 
         $search_data=[];
-        if($request->id){ //
-            $search_id=['id',$request->id];
+        if($request->id){ //ss
+            $search_id=['employees.id',$request->id];
             array_push($search_data,$search_id);
         }
         if($request->employee_name){
-            $search_name=['employee_name','like',$request->employee_name.'%'];
+            $search_name=['employees.employee_name','like',$request->employee_name.'%'];
             array_push($search_data,$search_name);
         }
     

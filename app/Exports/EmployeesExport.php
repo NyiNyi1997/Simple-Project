@@ -3,12 +3,13 @@
 namespace App\Exports;
 
 use App\Employee;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Events\AfterSheet;
+use Maatwebsite\Excel\Concerns\WithTitle;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
-use Maatwebsite\Excel\Concerns\WithTitle;
 
 
 
@@ -35,10 +36,22 @@ class EmployeesExport implements FromCollection, WithHeadings, ShouldAutoSize, W
 
     public function collection()
     {
-        //with('departments,positions')
-        //'department_id','position_id'
-        return Employee::select('id','employee_name','email','password','dob','gender')->withTrashed()->where($this->search_data )->get();
+        //return Employee::all(); //All Data from table
+
+       // return Employee::select('id','employee_name','email','password','dob','gender')->withTrashed()->where($this->search_data )->get();
+
+       $sql = DB::table('employees')
+            ->join('emp_dep_positions', 'employees.id', '=', 'emp_dep_positions.employee_id')
+            ->join('departments', 'departments.id', '=', 'emp_dep_positions.department_id')
+            ->join('positions', 'positions.id', '=', 'emp_dep_positions.position_id')
+            ->where($this->search_data)
+            ->select('employees.*','departments.department_name', 'positions.position_name')
+            
+            ->get();
+         return $sql;
+       
     }
+
 
     public function headings(): array
     {
@@ -58,8 +71,7 @@ class EmployeesExport implements FromCollection, WithHeadings, ShouldAutoSize, W
                 $event->sheet->getDelegate()->getStyle($cellRange)->getFont()->setSize(14);
                 $event->sheet->getStyle('A1:H1')->getFill()
                 ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
-                ->getStartColor()->setARGB('5ECF7B');
-
+                ->getStartColor()->setARGB('FF00FF');
             },
             
         ];
