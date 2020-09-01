@@ -2,16 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Dep_has_position;
 use Illuminate\Http\Request;
 
-/* 
-@Nyi Nyi Aung
-@29/8/2020
-*/
-
-
-class DepartmentPositionController extends Controller
+class DepartmentHasPositionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,6 +14,7 @@ class DepartmentPositionController extends Controller
     public function index()
     {
         //
+        
     }
 
     /**
@@ -39,21 +33,9 @@ class DepartmentPositionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
-    /**  
-    *@Decription-> store  data to department table
-    *@author-> nyi nyi aung
-    *@param->$request
-    *@date->26/08/2020
-    */
     public function store(Request $request)
     {
         //
-        $dep_position = new Dep_has_position();
-        $dep_position->department_id = $request['department_id'];
-        $dep_position->position_id = $request['position_id'];
-       
-        $dep_position->save();
     }
 
     /**
@@ -88,7 +70,6 @@ class DepartmentPositionController extends Controller
     public function update(Request $request, $id)
     {
         //
-        
     }
 
     /**
@@ -100,6 +81,5 @@ class DepartmentPositionController extends Controller
     public function destroy($id)
     {
         //
-
     }
 }

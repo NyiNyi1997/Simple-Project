@@ -21,17 +21,28 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
  
 //department
 Route::apiResource('/departments','DepartmentController');
-Route::put('/departments','DepartmentController@update');
-Route::delete('/departments/forcedelete/{id}','DepartmentController@forceDelete');
+Route::put('/departments','DepartmentController@update');//Department update
+Route::delete('/departments/forcedelete/{id}','DepartmentController@forceDelete');// department force delete
 
 //Position
 Route::apiResource('/positions','PositionController');
+Route::delete('/positions/forcedelete/{id}','PositionController@forceDelete');// position force delete
 
 //employee
 Route::apiResource('/employees','EmployeeController');
+Route::delete('/employees/forcedelete/{id}','EmployeeController@forceDelete');// employee force delete
+Route::post('/employees/search','EmployeeController@search');//  employees search
 
-//DepartmentPosition
+//EmployeeDepartmentPosition
 Route::apiResource('/department_positions','DepartmentPositionController');
+
+//File Export
+Route::get('/EmployeeExport','EmployeeController@fileExport');
+
+//File Import
+Route::post('/EmplopyeeImport/{id}','EmployeeController@fileImport');
+
+
 
 
 
