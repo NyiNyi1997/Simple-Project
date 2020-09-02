@@ -33,6 +33,7 @@ Route::apiResource('/employees','EmployeeController');
 Route::delete('/employees/forcedelete/{id}','EmployeeController@forceDelete');// employee force delete
 Route::post('/employees/search','EmployeeController@search');//  employees search
 
+
 //EmployeeDepartmentPosition
 Route::apiResource('/department_positions','DepartmentPositionController');
 
@@ -41,6 +42,14 @@ Route::get('/employee-export','EmployeeController@fileExport');
 
 //File Import
 Route::post('/emplopyeeImport/{id}','EmployeeController@fileImport');
+
+//Respository
+Route::get('save', 'EmployeeRegistrationController@save');
+Route::post('update','EmployeeRegistrationController@update');
+
+Route::get('save-position', 'PositionRegistrationController@save');
+
+
 
 
 
